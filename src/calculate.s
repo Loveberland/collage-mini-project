@@ -7,6 +7,7 @@
 .global findSerie
 .global power
 .global findAbs
+.global findSumArray
 
 /*
 	In unix %rdi is first argument register,
@@ -76,3 +77,17 @@ findAbs:
 
 findAbsEnd:
         ret
+
+findSumArray:
+	xorq %rax, %rax	/* make value of %rax = 0 */
+	cmpq $0, %rsi
+	jle findSumArrayEnd
+
+findSumArrayCal:
+	addq (%rdi), %rax	/* (%rdi) is mean dereference to value %rdi point */
+	addq $8, %rdi
+	decq %rsi
+	jnz findSumArrayCal
+
+findSumArrayEnd:
+	ret

@@ -8,17 +8,18 @@ extern long mod(long a, long b);
 extern long findSerie(long a);
 extern long power(long a, long b);
 extern long findAbs(long a);
+extern long findSumArray(long *a, long b);
 
 void printfLine() { printf("\n------------------------------\n\n"); }
 
 int main(void) {
         printf("First number: 4, Second number: 2\n");
         printf("Addition: %ld\nSubtraction: %ld\nMultiplication: %ld\nDivide: %ld\nModulus: %ld\n", add(4, 2), sub(4,2), mul(4, 2), div(4, 2), mod(4, 2));
-        
+
         printfLine();
-        
+
         printf("Find serie of: 25\nAnswer: %ld\n", findSerie(25));
-        
+
         printfLine();
 
         printf("Find power of [(Base): 2, (EXP): 8]: %ld\n", power(2, 8));
@@ -26,6 +27,11 @@ int main(void) {
         printfLine();
 
         printf("Find absolute of -123: %ld\n", findAbs(-123));
+
+	printfLine();
+
+	long arr[] = {5, 2, 3, 5, 1, 2, -1};
+	printf("Find summary of this array {5, 2, 3, 5, 1, 2, -1}: %ld\n", findSumArray(arr, sizeof(arr) / sizeof(long)));
 
         return 0;
 }
