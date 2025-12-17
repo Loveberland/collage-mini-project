@@ -8,12 +8,15 @@ extern long mod(long a, long b);
 extern long findSerie(long a);
 extern long power(long a, long b);
 extern long findAbs(long a);
-extern long findSumArray(long *a, long b);
+extern long findSumArray(long* a, long b);
+extern long findSumArrayTwo(long* a, long rows, long cols);
 
 void printfLine() { printf("\n------------------------------\n\n"); }
 
 int main(void) {
-        printf("First number: 4, Second number: 2\n");
+        printfLine();
+
+	printf("First number: 4, Second number: 2\n");
         printf("Addition: %ld\nSubtraction: %ld\nMultiplication: %ld\nDivide: %ld\nModulus: %ld\n", add(4, 2), sub(4,2), mul(4, 2), div(4, 2), mod(4, 2));
 
         printfLine();
@@ -30,8 +33,17 @@ int main(void) {
 
 	printfLine();
 
-	long arr[] = {5, 2, 3, 5, 1, 2, -1};
+	long arr[7] = {5, 2, 3, 5, 1, 2, -1};
 	printf("Find summary of this array {5, 2, 3, 5, 1, 2, -1}: %ld\n", findSumArray(arr, sizeof(arr) / sizeof(long)));
+
+	printfLine();
+
+	long arrTwo[3][3] = {
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9}
+	};
+	printf("Find Summary of array 2D [1-9]: %ld\n", findSumArrayTwo((long*)arrTwo, 3, 3));
 
         return 0;
 }

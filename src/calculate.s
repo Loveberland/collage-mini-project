@@ -8,6 +8,7 @@
 .global power
 .global findAbs
 .global findSumArray
+.global findSumArrayTwo
 
 /*
 	In unix %rdi is first argument register,
@@ -15,20 +16,28 @@
 	%rax is return register
 */
 
+/* Addiction */
+
 add:
         movq %rdi, %rax
         addq %rsi, %rax
         ret
+
+/* Subtraction */
 
 sub:
         movq %rdi, %rax
         subq %rsi, %rax
         ret
 
+/* Multiplication */
+
 mul:
         movq %rdi, %rax
         imulq %rsi, %rax
         ret
+
+/* Divide */
 
 div:
         movq %rsi, %r8
@@ -37,6 +46,8 @@ div:
         idivq %r8
         ret
 
+/* Modulus */
+
 mod:
         movq %rsi, %r8
         movq %rdi, %rax
@@ -44,6 +55,8 @@ mod:
         idivq %r8       /* rax = a / b */
         movq %rsi, %rax /* reminder will assign to %rdx after use idivq */
         ret
+
+/* Find series */
 
 findSerie:
         movq %rdi, %rax
@@ -54,6 +67,8 @@ findSerie:
         cqo
         idivq %r9       /* Divide rax by 2 */
         ret
+
+/* Find power */
 
 power:
         movq $1, %rax
@@ -69,6 +84,8 @@ powerLoop:
 powerEnd:
         ret
 
+/* Find absolute*/
+
 findAbs:
         movslq %edi, %rax
         cmpq $0, %rax   /* Compare %rax with 0 */
@@ -77,6 +94,8 @@ findAbs:
 
 findAbsEnd:
         ret
+
+/* Find array summary */
 
 findSumArray:
 	xorq %rax, %rax	/* make value of %rax = 0 */
@@ -90,4 +109,22 @@ findSumArrayCal:
 	jnz findSumArrayCal
 
 findSumArrayEnd:
+	ret
+
+/* Find array 2D summary */
+
+findSumArrayTwo:
+	movq %rsi, %rcx;
+	imulq %rdx, %rcx;	/* rows * cols */
+	xorq %rax, %rax
+	cmpq $0, %rcx
+	jle findSumArrayTwoEnd
+
+findSumArrayTwoCal:
+	addq (%rdi), %rax
+	addq $8, %rdi	/* move to next elements */
+	decq %rcx
+	jnz findSumArrayTwoCal
+
+findSumArrayTwoEnd:
 	ret
