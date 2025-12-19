@@ -1,4 +1,7 @@
-.section .text
+.section .rodata
+PI: .double 3.14
+
+.text
 .global add
 .global sub
 .global mul
@@ -9,6 +12,10 @@
 .global findAbs
 .global findSumArray
 .global findSumArrayTwo
+.global findFac
+.global findStrLen
+.global isUpper
+.global findAreaCircle
 
 /*
 	In unix %rdi is first argument register,
@@ -127,4 +134,50 @@ findSumArrayTwoCal:
 	jnz findSumArrayTwoCal
 
 findSumArrayTwoEnd:
+	ret
+
+findFac:
+	xorq %rax, %rax
+	addq $1, %rax
+	cmpq $1, %rdi
+	jle findFacEnd
+
+findFacCal:
+	imulq %rdi, %rax
+	decq %rdi
+	cmpq $1, %rdi
+	jg findFacCal
+
+findFacEnd:
+	ret
+
+findStrLen:
+	xorq %rax, %rax
+
+findStrLenCal:
+	cmpb $0, (%rdi)
+	je findStrLenEnd
+	incq %rax
+	incq %rdi
+	jmp findStrLenCal
+
+findStrLenEnd:
+	ret
+
+isUpper:
+	movb %dil, %al
+	cmpb $65, %al
+	jl isNotUpper
+	cmpb $90, %al
+	jg isNotUpper
+	movq $1, %rax
+	ret
+
+isNotUpper:
+	movq $0, %rax
+	ret
+
+findAreaCircle:
+	mulsd %xmm0, %xmm0
+	mulsd PI(%rip), %xmm0
 	ret

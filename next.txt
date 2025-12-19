@@ -1,4 +1,1 @@
-1. Create find factorial function use (push/pop)
-2. Write strlen function
-3. Write isUpper function
-4. find Area of curcle
+1.Get image array and at brightness
