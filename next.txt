@@ -1,1 +1,1 @@
-1. Find summary in array 1D & 2D
+1.Get image array and at brightness
