@@ -1,3 +1,3 @@
-```make``` to compile
-```make run``` to run
+```make``` to compile\n
+```make run``` to run\n
 ```make clean``` to clean binary directory
