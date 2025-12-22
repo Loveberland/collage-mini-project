@@ -242,29 +242,29 @@ caesarEnd:
 
 bubbleSort:
 	cmpq $1, %rsi	/* If elements less than 1 return */
-	jle .done
+	jle .bubbleDone
 	decq %rsi
 
-.outerLoop:
+.bubbleOuterLoop:
 	xorq %rcx, %rcx
 
-.innerLoop:
+.bubbleInnerLoop:
 	cmpq %rsi, %rcx
-	jge .nextPass
+	jge .bubbleNextPass
 	movq (%rdi, %rcx, 8), %rax	/* %rax = arr[i] */
 	movq 8(%rdi, %rcx, 8), %rdx	/* %rdx = arr[i + 1] */
 	cmpq %rdx, %rax	/* %rax <= %rdx ? */
-	jle .noSwap
+	jle .bubbleNoSwap
 	movq %rdx, (%rdi, %rcx, 8)	/* This is swap between %rdx, %rax */
 	movq %rax, 8(%rdi, %rcx, 8)
 
-.noSwap:
+.bubbleNoSwap:
 	incq %rcx
-	jmp .innerLoop
+	jmp .bubbleInnerLoop
 
-.nextPass:
+.bubbleNextPass:
 	decq %rsi
-	jnz .outerLoop
+	jnz .bubbleOuterLoop
 
-.done:
+.bubbleDone:
 	ret
