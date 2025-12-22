@@ -21,8 +21,8 @@ extern void brightness(long* a, long increase, long rows, long cols);
 extern void caesar(char* arr, long shifter);
 extern void bubbleSort(long* arr, long length);
 
-void printArr(long* arr) {
-	for (int i = 0; i < sizeof(arr) / sizeof(int); i++) printf(arr[i]);
+void printArr(long* arr, long size) {
+	for (int i = 0; i < size; i++) printf("%ld ", arr[i]);
 }
 
 void printfLine() { printf("\n------------------------------\n\n"); }
@@ -98,11 +98,13 @@ int main(void) {
 
 	printfLine();
 
-	int bubble[] = {63, 234, 565, 1, 13, 454, 676, 9};
+	long bubble[8] = {63, 234, 565, 1, 13, 454, 676, 9};
 	printf("Bubble sort fromt this: ");
-	printArr(&bubble[0]));
+	printArr(&bubble[0], 8);
+	bubbleSort(&bubble[0], 8);
 	printf("\nTo this: ");
-	printArr(&bubble[0], 8));
+	printArr(&bubble[0], 8);
+	printf("\n");
 
 	printfLine();
 
