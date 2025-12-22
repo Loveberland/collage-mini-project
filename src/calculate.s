@@ -17,6 +17,8 @@ PI: .double 3.14
 .global isUpper
 .global findAreaCircle
 .global brightness
+.global caesar
+.global bubbleSort
 
 /*
 	In unix %rdi is first argument register,
@@ -211,3 +213,32 @@ brightnessCal:
 
 brightnessEnd:
 	ret
+
+/* Caesar */
+caesar:
+	movq $26, %r9
+
+caesarCal:
+	cmpb $0, (%rdi)
+	je caesarEnd
+	movzbq (%rdi), %rax
+	cmpq $'a', %rax
+	jl caesarNext
+	cmpq $'z', %rax
+	jg caesarNext
+	subq $'a', %rax
+	addq %rsi, %rax
+	cqto
+	idivq %r9
+	addq $'a', %rdx
+	movb %dl, (%rdi)
+
+caesarNext:
+	incq %rdi
+	jmp caesarCal
+
+caesarEnd:
+	ret
+
+bubbleSort:
+	

@@ -18,6 +18,12 @@ extern long findStrLen(char* a);
 extern long isUpper(char a);
 extern double findAreaCircle(double a);
 extern void brightness(long* a, long increase, long rows, long cols);
+extern void caesar(char* arr, long shifter);
+extern void bubbleSort(long* arr, long length);
+
+void printArr(long* arr) {
+	for (int i = 0; i < sizeof(arr) / sizeof(int); i++) printf(arr[i]);
+}
 
 void printfLine() { printf("\n------------------------------\n\n"); }
 
@@ -83,5 +89,22 @@ int main(void) {
 		for (int j = 0; j < 3; j++) printf("%d ", image[i][j]);
 		printf("\n");
 	}
+
+	printfLine();
+
+	char word[] = "hello, world";
+	caesar(&word[0], 5);
+	printf("Encode caesar cipher 5 \"hello, world\": %s\n", word);
+
+	printfLine();
+
+	int bubble[] = {63, 234, 565, 1, 13, 454, 676, 9};
+	printf("Bubble sort fromt this: ");
+	printArr(&bubble[0]));
+	printf("\nTo this: ");
+	printArr(&bubble[0], 8));
+
+	printfLine();
+
 	return 0;
 }
