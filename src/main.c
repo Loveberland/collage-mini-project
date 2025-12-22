@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+#define ROWS 3
+#define COLS 3
+
 extern long add(long a, long b);
 extern long sub(long a, long b);
 extern long mul(long a, long b);
@@ -14,6 +17,7 @@ extern long findFac(long a);
 extern long findStrLen(char* a);
 extern long isUpper(char a);
 extern double findAreaCircle(double a);
+extern void brightness(long* a, long increase, long rows, long cols);
 
 void printfLine() { printf("\n------------------------------\n\n"); }
 
@@ -42,12 +46,12 @@ int main(void) {
 
 	printfLine();
 
-	long arrTwo[3][3] = {
+	long arrTwo[ROWS][COLS] = {
 		{1, 2, 3},
 		{4, 5, 6},
 		{7, 8, 9}
 	};
-	printf("Find Summary of array 2D [1-9]: %ld\n", findSumArrayTwo((long*)arrTwo, 3, 3));
+	printf("Find Summary of array 2D [1-9]: %ld\n", findSumArrayTwo((long*)arrTwo, ROWS, COLS));
 
 	printfLine();
 
@@ -67,5 +71,17 @@ int main(void) {
 
 	printfLine();
 
+	long image[ROWS][COLS] = {
+		{21, 22, 23},
+		{24, 25, 26},
+		{27, 28, 29}
+	};
+	printf("Increase brightness 10%% of this array[21 - 29]: \n");
+	brightness(&image[0][0], 10, ROWS, COLS);
+	printf("Debug\n");
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) printf("%d ", image[i][j]);
+		printf("\n");
+	}
 	return 0;
 }

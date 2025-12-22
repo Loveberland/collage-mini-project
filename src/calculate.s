@@ -16,6 +16,7 @@ PI: .double 3.14
 .global findStrLen
 .global isUpper
 .global findAreaCircle
+.global brightness
 
 /*
 	In unix %rdi is first argument register,
@@ -136,6 +137,8 @@ findSumArrayTwoCal:
 findSumArrayTwoEnd:
 	ret
 
+/* Find factorial */
+
 findFac:
 	xorq %rax, %rax
 	addq $1, %rax
@@ -151,6 +154,8 @@ findFacCal:
 findFacEnd:
 	ret
 
+/* Find string length */
+
 findStrLen:
 	xorq %rax, %rax
 
@@ -163,6 +168,8 @@ findStrLenCal:
 
 findStrLenEnd:
 	ret
+
+/* Is upper */
 
 isUpper:
 	movb %dil, %al
@@ -177,7 +184,30 @@ isNotUpper:
 	movq $0, %rax
 	ret
 
+/* Find area of circle */
+
 findAreaCircle:
 	mulsd %xmm0, %xmm0
 	mulsd PI(%rip), %xmm0
+	ret
+
+/* config brightness */
+
+brightness:
+	imulq %rdx, %rcx
+	testq %rcx, %rcx
+	jz brightnessEnd
+	movq %rsi, %r9
+
+brightnessCal:
+	movq (%rdi), %r8
+	movq %r8, %rax
+	cqto
+	idivq %r9
+	addq %rax, (%rdi)
+	addq $8, %rdi
+	decq %rcx
+	jnz brightnessCal
+
+brightnessEnd:
 	ret

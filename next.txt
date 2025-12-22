@@ -1,1 +1,2 @@
-1.Get image array and at brightness
+1. Caesar Cipher
+2. Bubble sort
