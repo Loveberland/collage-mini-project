@@ -19,6 +19,7 @@ PI: .double 3.14
 .global brightness
 .global caesar
 .global bubbleSort
+.global selection
 
 /*
 	In unix %rdi is first argument register,
@@ -267,4 +268,48 @@ bubbleSort:
 	jnz .bubbleOuterLoop
 
 .bubbleDone:
+	ret
+
+/* Selection sort */
+
+selection:
+	cmp $1, %rsi
+	jle .selectionDone
+	xor %r8, %r8
+
+.selectionOuterLoop:
+	mov %rsi, %rax
+	dec %rax
+	cmp %rax, %r8
+	jge .selectionDone
+	mov %r8, %r10
+	mov %r8, %r9
+	inc %r9
+
+.selectionInnerLoop:
+	cmp %rsi, %r9
+	jge .selectionSwap
+	mov (%rdi, %r9, 8), %r11
+	mov (%rdi, %r10, 8), %rcx
+	cmp %rcx, %r11
+	jge .selectionNextJ
+	mov %r9, %r10
+
+.selectionNextJ:
+	inc %r9
+	jmp .selectionInnerLoop
+
+.selectionSwap:
+	cmp %r8, %r10
+	je .selectionNextI
+	mov (%rdi, %r8, 8), %rax
+	mov (%rdi, %r10, 8), %rcx
+	mov %rcx, (%rdi, %r8, 8)
+	mov %rax, (%rdi, %r10, 8)
+
+.selectionNextI:
+	inc %r8
+	jmp .selectionOuterLoop
+
+.selectionDone:
 	ret

@@ -1,1 +1,1 @@
-1. Selection sort
+1. Do something about stack

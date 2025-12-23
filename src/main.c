@@ -20,6 +20,7 @@ extern double findAreaCircle(double a);
 extern void brightness(long* a, long increase, long rows, long cols);
 extern void caesar(char* arr, long shifter);
 extern void bubbleSort(long* arr, long length);
+extern void selection(long* arr, long length);
 
 void printArr(long* arr, long size) {
 	for (int i = 0; i < size; i++) printf("%ld ", arr[i]);
@@ -99,11 +100,21 @@ int main(void) {
 	printfLine();
 
 	long bubble[8] = {63, 234, 565, 1, 13, 454, 676, 9};
-	printf("Bubble sort fromt this: ");
+	printf("Bubble sort from this: ");
 	printArr(&bubble[0], 8);
 	bubbleSort(&bubble[0], 8);
 	printf("\nTo this: ");
 	printArr(&bubble[0], 8);
+	printf("\n");
+
+	printfLine();
+
+	long selectionArr[8] = {8, 0, 12, 52, 33, 61, 56, 70};
+	printf("Selection sort from this: ");
+	printArr(&selectionArr[0], 8);
+	selection(&selectionArr[0], 8);
+	printf("\nTo this: ");
+	printArr(&selectionArr[0], 8);
 	printf("\n");
 
 	printfLine();
